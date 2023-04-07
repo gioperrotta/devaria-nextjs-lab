@@ -2,20 +2,15 @@
 import { useRouter } from 'next/router'
 
 export default function comAutorizacao(Componente) {
-  const estaLogado = true;
+  const estaLogado = false;
   return (props) => {
     const router = useRouter();
-    if (typeof window !== 'undefined') {
-      if (!estaLogado) {
+    if (!estaLogado ) {
+      if (typeof window !== 'undefined') {
         router.push('/login')
-        return null
       }
-      return (
-        <>
-          <Componente {...props} />
-        </>
-      )
+    } else {
+      return <Componente {...props} />
     }
-    return null
   }
 }
